@@ -1,7 +1,7 @@
 
 isPrime :: Int -> Bool
 isPrime n
-  = if (n == 0) || (n == 1) then False else isPrime' n (floor (sqrt (fromIntergral n)))
+  = if (n == 0) || (n == 1) then False else isPrime' n (floor (sqrt (fromIntegral n)))
   where
     isPrime' :: Int -> Int -> Bool
     isPrime' prime divisor
@@ -15,3 +15,5 @@ nextPrime n
   | otherwise  = nextPrime n'
   where
     n' = (n + 1)
+
+
