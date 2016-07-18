@@ -16,4 +16,30 @@ nextPrime n
   where
     n' = (n + 1)
 
+primeList :: [Int]
+primeList
+  = 2 : map (nextPrime) primeList
 
+problem50 :: Int -> (Int, Int) -> (Int, Int)
+problem50 current (prime, noPrimes)
+  | current > 1000000    = (prime, noPrimes)
+  | noPrimes' > noPrimes = problem50 current' (current, noPrimes')
+  | otherwise            = problem50 current' (prime, noPrimes)
+  where
+    current'  = current + 1
+    noPrimes' = findSum current primeList
+    
+    findSum :: Int -> [Int]-> Int
+    findSum prime (x : xs)
+      | x < prime = if sum == 0 then findSum prime xs else sum
+      | otherwise = 1
+      where
+        sum = findSum' (prime - x) xs 1
+        
+        findSum' :: Int -> [Int] -> Int -> Int
+        findSum' prime (x : xs) sum
+          | prime < 0  = 0
+          | prime == 0 = sum
+          | otherwise  = findSum' (prime - x) xs (sum + 1)
+     
+    
