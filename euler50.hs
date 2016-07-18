@@ -20,13 +20,12 @@ primeList :: [Int]
 primeList
   = 2 : map (nextPrime) primeList
 
-problem50 :: Int -> (Int, Int) -> (Int, Int)
-problem50 current (prime, noPrimes)
+problem50 :: [Int] -> (Int, Int) -> (Int, Int)
+problem50 (current : rest) (prime, noPrimes)
   | current > 100000    = (prime, noPrimes)
-  | isPrime current && noPrimes' > noPrimes = problem50 current' (current, noPrimes')
-  | otherwise            = problem50 current' (prime, noPrimes)
+  | noPrimes' > noPrimes = problem50 rest (current, noPrimes')
+  | otherwise            = problem50 rest (prime, noPrimes)
   where
-    current'  = current + 1
     noPrimes' = findSum current primeList
     
     findSum :: Int -> [Int]-> Int
