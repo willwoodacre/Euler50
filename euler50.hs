@@ -22,8 +22,8 @@ primeList
 
 problem50 :: Int -> (Int, Int) -> (Int, Int)
 problem50 current (prime, noPrimes)
-  | current > 1000000    = (prime, noPrimes)
-  | noPrimes' > noPrimes = problem50 current' (current, noPrimes')
+  | current > 100000    = (prime, noPrimes)
+  | isPrime current && noPrimes' > noPrimes = problem50 current' (current, noPrimes')
   | otherwise            = problem50 current' (prime, noPrimes)
   where
     current'  = current + 1
